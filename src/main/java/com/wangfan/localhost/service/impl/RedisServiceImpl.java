@@ -25,7 +25,9 @@ public class RedisServiceImpl implements RedisService {
             lock.tryLock(10, TimeUnit.SECONDS);
             TimeUnit.SECONDS.sleep(10);
         } catch (InterruptedException e) {
-            log.error("获取锁超时");
+            System.out.println("获取锁超时");
+        } finally {
+            lock.unlock();
         }
         System.out.println("redis");
     }
