@@ -1,0 +1,27 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangfan.localhost.dao.SyncDao">
+
+    <select id="queryVisitor" resultType="com.wangfan.localhost.pojo.Visitor">
+        /*FORCE_MASTER*/ select ip from visitor
+    </select>
+
+    <update id="updateVisitor">
+        update visitor
+        <trim prefix="set" suffixOverrides=",">
+            <trim prefix="text = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                    <if test="item.text != null">
+                        when ip = #{item.ip} and times = #{item.times}
+                        then #{item.text}
+                    </if>
+                </foreach>
+            </trim>
+        </trim>
+        where ip in
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            #{item.ip}
+        </foreach>
+    </update>
+
+</mapper>
