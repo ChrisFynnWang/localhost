@@ -79,3 +79,4 @@ oreo-dao/src/test/java/com/ejiayou/oreo/dao/orderinfo/
 oreo-dao/src/test/java/com/ejiayou/oreo/dao/account/bean/
 /bin/
 /target/
+.idea
