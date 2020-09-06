@@ -24,6 +24,16 @@ spring:
       test-while-idle: true
       time-between-eviction-runs-millis: 1000
       max-active: 1
+  redis:
+    host: localhost
+    port: 6379
+    password: redispass
+    database: 0
+    pool:
+      max-active: 1000
+      max-wait: 5000
+      max-idle: 10
+      min-idle: 0
 mybatis:
   mapper-locations: classpath*:com/wangfan/localhost/dao/**/*Mapper.xml
   type-aliases-package: com.ejiayou.localhost.dao
